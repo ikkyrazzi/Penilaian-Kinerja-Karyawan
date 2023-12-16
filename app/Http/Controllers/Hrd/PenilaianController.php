@@ -139,19 +139,25 @@ class PenilaianController extends Controller
     }
 
     public function show($id)
-    {
-        $penilaian = Penilaian::findOrFail($id);
+{
+    $penilaian = Penilaian::findOrFail($id);
 
-        $title = self::TITLE;
-        $subtitle = 'Detail Penilaian';
-        $url = self::URL;
+    $title = self::TITLE;
+    $subtitle = 'Detail Penilaian';
+    $url = self::URL;
 
-        // Check if the 'pegawai' relationship is loaded
-        $penilaian->load('pegawai');
+    // Check if the 'pegawai' relationship is loaded
+    $penilaian->load('pegawai');
 
-        $totalSkorNilai = [];
-        $totalSkorNilai[$penilaian->nama_pegawai] = Penilaian::where('nama_pegawai', $penilaian->nama_pegawai)->sum('skor_nilai');
+    $totalSkorNilai = [];
+    $totalSkorNilai[$penilaian->nama_pegawai] = Penilaian::where('nama_pegawai', $penilaian->nama_pegawai)->sum('skor_nilai');
 
-        return view(self::FOLDER . 'show', compact('title', 'subtitle', 'url', 'penilaian', 'totalSkorNilai'));
-    }
+    // Fetch kriteria and skor_nilai based on $penilaian->id
+    $kriteriaSkor = Penilaian::where('nama_pegawai', $penilaian->nama_pegawai)
+        ->pluck('skor_nilai', 'nama_kriteria')
+        ->toArray();
+
+    return view(self::FOLDER . 'show', compact('title', 'subtitle', 'url', 'penilaian', 'totalSkorNilai', 'kriteriaSkor'));
+}
+
 }

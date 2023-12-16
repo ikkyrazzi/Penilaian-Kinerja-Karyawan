@@ -96,10 +96,10 @@
         var ctx = document.getElementById('kriteriaChart').getContext('2d');
 
         var data = {
-            labels: {!! json_encode($penilaian->pluck('nama_kriteria')) !!},
+            labels: {!! json_encode(array_keys($kriteriaSkor)) !!},
             datasets: [{
                 label: 'Skor Nilai',
-                data: {!! json_encode($penilaian->pluck('skor_nilai')) !!},
+                data: {!! json_encode(array_values($kriteriaSkor)) !!},
                 backgroundColor: [
                     '#191d21',
                     '#63ed7a',
