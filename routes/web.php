@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group(function () {
     // Routes for HRD
     Route::prefix('hrd')->group(function () {
         Route::get('/dashboard', [App\Http\Controllers\Hrd\HomeController::class, 'index'])->name('hrd.dashboard');
+        Route::get('/dashboard/data', [App\Http\Controllers\Hrd\HomeController::class, 'chartData'])->name('hrd.dashboard.data');
+        Route::get('/dashboard/top_scores', [App\Http\Controllers\Hrd\HomeController::class, 'topScores'])->name('hrd.dashboard.top_scores');
     
         Route::prefix('hrd/jabatan')
         ->as('hrd.jabatans.')
@@ -55,9 +57,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/create', 'create')->name('create');
             Route::get('/{id}/edit', 'edit')->name('edit');
             Route::get('/export-jabatan', 'export')->name('export');
+            Route::get('/import-jabatan', 'import')->name('import');
             // Route::get('/{id}', 'show')->name('show');
             
             Route::post('/', 'store')->name('store');
+            Route::post('/import-jabatan', 'importProcess')->name('importProcess');
 
             Route::put('/{id}', 'update')->name('update');
 
@@ -71,7 +75,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::get('/{id}/edit', 'edit')->name('edit');
-            Route::get('/export-jabatan', 'export')->name('export');
+
             // Route::get('/{id}', 'show')->name('show');
             
             Route::post('/', 'store')->name('store');
@@ -88,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::get('/{id}/edit', 'edit')->name('edit');
+            Route::get('/penilaian/{id}', 'show')->name('show');
             // Route::get('/{id}', 'show')->name('show');
             
             Route::post('/', 'store')->name('store');

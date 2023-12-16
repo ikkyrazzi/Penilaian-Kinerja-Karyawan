@@ -48,28 +48,34 @@
                                     <tr>
                                         <th class="text-center">Nomor Induk Pegawai</th>
                                         <th class="text-center">Nama Pegawai</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Jabatan</th>
                                         <th class="text-center">Nama Penilai</th>
-                                        <th class="text-center">Nama Kriteria</th>
-                                        <th class="text-center">Skor</th>
-                                        <th class="text-center">Bobot (%)</th>
                                         <th class="text-center">Skor Penilaian</th>
+                                        <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($penilaians as $penilaian)
-                                    <tr>
-                                        <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->nip }}</td>
-                                        <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->nama_pegawai }}</td>
-                                        <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->nama_penilai }}</td>
-                                        <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->nama_kriteria }}</td>
-                                        <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->skor }}</td>
-                                        <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->bobot }}</td>
-                                        <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->skor_nilai }}</td>
-                                    </tr>
+                                    @foreach ($uniquePegawaiNames as $namaPegawai)
+                                        @php
+                                            $penilaian = $penilaians->where('nama_pegawai', $namaPegawai)->first();
+                                        @endphp
+                                        <tr>
+                                            <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->nip }}</td>
+                                            <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->nama_pegawai }}</td>
+                                            <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->pegawai->email }}</td>
+                                            <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->pegawai->nama_jabatan }}</td>
+                                            <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->nama_penilai }}</td>
+                                            <td class="text-center font-weight-bold text-uppercase">{{ $totalSkorNilai[$namaPegawai] }}</td>
+                                            <td class="text-center font-weight-bold text-uppercase">
+                                                <a href="{{ route('hrd.penilaians.show', $penilaian->id) }}" class="btn btn-info btn-sm">Show</a>
+                                            </td>                                            
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
+                        
                     </div>
                 </div>
             </div>

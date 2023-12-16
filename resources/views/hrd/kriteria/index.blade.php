@@ -81,7 +81,6 @@
 
                             <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Tambah Kriteria</button>
-                                <a href="{{ route('hrd.kriterias.export') }}" class="btn btn-success">Export Data</a>
                             </div>
                         </form>
 

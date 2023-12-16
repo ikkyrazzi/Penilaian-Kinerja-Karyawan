@@ -98,10 +98,25 @@ class PegawaiController extends Controller
         return Excel::download(new PegawaiExport, 'pegawai.xlsx');
     }
 
-    public function import() 
+    public function import()
     {
-        Excel::import(new PegawaiImport, 'pegawai.xlsx');
-        
-        return redirect()->route(self::URL . 'index');
+        $title = self::TITLE;
+        $subtitle = 'Import Data';
+        $url = self::URL;
+
+        return view(self::FOLDER . 'import', compact('title', 'subtitle', 'url',));
+    }
+
+    public function importProcess(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        $file = $request->file('file');
+
+        Excel::import(new PegawaiImport, $file);
+
+        return redirect()->route(self::URL . 'index')->with('success', 'Data Jabatan berhasil diimpor.');
     }
 }

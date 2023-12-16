@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Hrd\StorePenilaianRequest;
 use App\Http\Requests\Hrd\UpdatePegawaiRequest;
 use App\Http\Requests\Hrd\UpdatePenilaianRequest;
+use App\Models\Jabatan;
 use App\Models\Kriteria;
 use App\Models\Pegawai;
 use App\Models\Penilaian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PenilaianController extends Controller
 {
@@ -23,12 +25,22 @@ class PenilaianController extends Controller
         $subtitle = 'Daftar Data';
         $url = self::URL;
         $folder = 'app';
-
+    
         $penilaians = Penilaian::latest()->get();
-        $pegawais   = Pegawai::latest()->get();
-        $kriterias  = Kriteria::latest()->get();
-        
-        return view(self::FOLDER . 'index', compact('title', 'subtitle', 'url', 'penilaians', 'folder', 'pegawais', 'kriterias'));
+    
+        // Get unique nama_pegawai values
+        $uniquePegawaiNames = $penilaians->unique('nama_pegawai')->pluck('nama_pegawai');
+    
+        // Calculate total skor_nilai for each unique nama_pegawai
+        $totalSkorNilai = [];
+        foreach ($uniquePegawaiNames as $namaPegawai) {
+            $totalSkorNilai[$namaPegawai] = Penilaian::where('nama_pegawai', $namaPegawai)->sum('skor_nilai');
+        }
+    
+        $pegawais = Pegawai::latest()->get();
+        $kriterias = Kriteria::latest()->get();
+    
+        return view(self::FOLDER . 'index', compact('title', 'subtitle', 'url', 'penilaians', 'folder', 'pegawais', 'kriterias', 'uniquePegawaiNames', 'totalSkorNilai'));
     }
 
     public function create()
@@ -128,12 +140,18 @@ class PenilaianController extends Controller
 
     public function show($id)
     {
-        $penilaians = Penilaian::findOrFail($id);
+        $penilaian = Penilaian::findOrFail($id);
 
         $title = self::TITLE;
         $subtitle = 'Detail Penilaian';
         $url = self::URL;
 
-        return view(self::FOLDER . 'show', compact('title', 'subtitle', 'url', 'penilaians'));
+        // Check if the 'pegawai' relationship is loaded
+        $penilaian->load('pegawai');
+
+        $totalSkorNilai = [];
+        $totalSkorNilai[$penilaian->nama_pegawai] = Penilaian::where('nama_pegawai', $penilaian->nama_pegawai)->sum('skor_nilai');
+
+        return view(self::FOLDER . 'show', compact('title', 'subtitle', 'url', 'penilaian', 'totalSkorNilai'));
     }
 }

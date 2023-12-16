@@ -88,16 +88,4 @@ class KriteriaController extends Controller
 
         return view(self::FOLDER . 'show', compact('title', 'subtitle', 'url', 'kriterias'));
     }
-
-    public function export() 
-    {
-        return Excel::download(new KriteriaExport, 'kriteria.xlsx');
-    }
-
-    public function import() 
-    {
-        Excel::import(new KriteriaImport, 'kriteria.xlsx');
-        
-        return redirect()->route(self::URL . 'index');
-    }
 }

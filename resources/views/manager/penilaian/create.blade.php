@@ -126,6 +126,7 @@
                                                             <input type="hidden" name="nama_kriteria[{{ $kriteria->id }}]" value="{{ $kriteria->nama_kriteria }}">
                                                             <input type="hidden" name="bobot[{{ $kriteria->id }}]" value="{{ $kriteria->bobot }}">
                                                             <input type="hidden" name="skor_nilai[{{ $kriteria->id }}]" value="{{ $kriteria->skor_nilai }}">
+                                                            <input type="hidden" name="nama_jabatan[{{ $kriteria->id }}]" value="{{ $kriteria->nama_jabatan }}">
                                                             <input type="hidden" name="id_kriteria[{{ $kriteria->id }}]" value="{{ $kriteria->id }}">
                                                         </td>                                                        
                                                         <td class="text-center font-weight-bold text-uppercase">{{ $kriteria->bobot }}</td>

@@ -58,8 +58,8 @@
                                     @foreach ($penilaians as $penilaian)
                                     <tr>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->nip }}</td>
-                                        <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->nama_kriteria }}</td>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->nama_pegawai }}</td>
+                                        <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->nama_kriteria }}</td>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->skor }}</td>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->bobot }}</td>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->skor_nilai }}</td>

@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 
         <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
 
     <body>

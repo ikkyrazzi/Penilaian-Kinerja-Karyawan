@@ -133,6 +133,7 @@
                             <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Tambah Pegawai</button>
                                 <a href="{{ route('hrd.pegawais.export') }}" class="btn btn-success">Export Data</a>
+                                <a href="{{ route('hrd.pegawais.import') }}" class="btn btn-warning">Import Data</a>
                             </div>
                         </form>
 
