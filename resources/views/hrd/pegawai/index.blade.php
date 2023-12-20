@@ -24,7 +24,7 @@
 
 <section class="section">
     <div class="section-header">
-        <h1>Data Jabatan</h1>
+        <h1>Data Pegawai</h1>
     </div>
 
     <div class="section-body">
@@ -167,7 +167,7 @@
                                     <tr>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->nip }}</td>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->nama_pegawai }}</td>
-                                        <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->jabatan->nama_jabatan ?? '' }}</td>
+                                        <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->nama_jabatan }}</td>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->tgl_lahir }}</td>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->email }}</td>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->pendidikan_terakhir }}</td>

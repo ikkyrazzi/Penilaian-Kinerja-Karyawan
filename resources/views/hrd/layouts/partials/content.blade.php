@@ -74,7 +74,7 @@
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Chart Title</h4>
+                        <h4>Grafik Karyawan</h4>
                     </div>
                     <div class="card-body">
                         <!-- Reduce canvas height and width -->
@@ -89,7 +89,7 @@
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Top 10 Scores</h4>
+                        <h4>Top 10 Karyawan</h4>
                     </div>
                     <div class="card-body">
                         <table class="table">
