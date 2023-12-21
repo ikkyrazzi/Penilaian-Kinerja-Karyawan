@@ -26,6 +26,7 @@ class Penilaian extends Model
         'skor'              => 'nullable|in:Sangat Bagus,Bagus,Cukup,Kurang Bagus,Tidak Bagus',
         'bobot'             => 'nullable',
         'skor_nilai'        => 'nullable',
+        'hasil'             => 'nullable',
     ];
 
     public static $ruleMessages = [

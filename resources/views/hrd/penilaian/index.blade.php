@@ -52,6 +52,7 @@
                                         <th class="text-center">Jabatan</th>
                                         <th class="text-center">Nama Penilai</th>
                                         <th class="text-center">Skor Penilaian</th>
+                                        <th class="text-center">Hasil</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -68,13 +69,33 @@
                                             <td class="text-center font-weight-bold text-uppercase">{{ $penilaian->nama_penilai }}</td>
                                             <td class="text-center font-weight-bold text-uppercase">{{ $totalSkorNilai[$namaPegawai] }}</td>
                                             <td class="text-center font-weight-bold text-uppercase">
+                                                @php
+                                                    $hasilKinerjaBadgeClass = '';
+                                                    switch ($hasilKinerja[$namaPegawai]) {
+                                                        case 'Kinerja Bagus':
+                                                            $hasilKinerjaBadgeClass = 'badge badge-success';
+                                                            break;
+                                                        case 'Kinerja Cukup':
+                                                            $hasilKinerjaBadgeClass = 'badge badge-info';
+                                                            break;
+                                                        case 'Kinerja Tidak Bagus':
+                                                            $hasilKinerjaBadgeClass = 'badge badge-danger';
+                                                            break;
+                                                        default:
+                                                            $hasilKinerjaBadgeClass = '';
+                                                            break;
+                                                    }
+                                                @endphp
+                                                <span class="{{ $hasilKinerjaBadgeClass }}">{{ $hasilKinerja[$namaPegawai] }}</span>
+                                            </td>
+                                            <td class="text-center font-weight-bold text-uppercase">
                                                 <a href="{{ route('hrd.penilaians.show', $penilaian->id) }}" class="btn btn-info btn-sm">Show</a>
                                             </td>                                            
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
+                        </div>                        
                         
                     </div>
                 </div>

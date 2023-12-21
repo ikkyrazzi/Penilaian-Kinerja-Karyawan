@@ -40,6 +40,7 @@ class PegawaiImport implements ToModel, WithHeadingRow
             'email' => $row['email'],
             'pendidikan_terakhir' => $pendidikanTerakhir,
             'tgl_masuk' => $row['tanggal_masuk'],
+            'alamat' => $row['alamat'],
         ]);
     }
 

@@ -15,7 +15,7 @@ class JabatanExport implements FromCollection, WithHeadings, WithEvents, ShouldA
 {
     public function collection()
     {
-        return Jabatan::select('id', 'nama_jabatan', 'divisi')->get();
+        return Jabatan::select('id', 'nama_jabatan', 'divisi', 'deskripsi')->get();
     }
 
     public function headings(): array
@@ -24,6 +24,7 @@ class JabatanExport implements FromCollection, WithHeadings, WithEvents, ShouldA
             'ID',
             'Nama Jabatan',
             'Divisi',
+            'Jobdesk'
         ];
     }
 
@@ -31,7 +32,7 @@ class JabatanExport implements FromCollection, WithHeadings, WithEvents, ShouldA
     {
         return [
             AfterSheet::class => function(AfterSheet $event) {
-                $event->sheet->getStyle('A1:C1')->applyFromArray([
+                $event->sheet->getStyle('A1:D1')->applyFromArray([
                     'font' => [
                         'bold' => true,
                         'color' => ['rgb' => '000000'],
@@ -49,7 +50,7 @@ class JabatanExport implements FromCollection, WithHeadings, WithEvents, ShouldA
                 ]);
 
                 // Menetapkan border untuk semua cell dalam rentang data
-                $event->sheet->getStyle('A2:C' . $event->sheet->getHighestRow())->applyFromArray([
+                $event->sheet->getStyle('A2:D' . $event->sheet->getHighestRow())->applyFromArray([
                     'borders' => [
                         'allBorders' => [
                             'borderStyle' => Border::BORDER_THIN,

@@ -15,7 +15,7 @@ class PegawaiExport implements FromCollection, WithHeadings, WithEvents, ShouldA
 {
     public function collection()
     {
-        return Pegawai::select('id', 'nip', 'nama_pegawai', 'nama_jabatan', 'tgl_lahir', 'email', 'pendidikan_terakhir', 'tgl_masuk')->get();
+        return Pegawai::select('id', 'nip', 'nama_pegawai', 'nama_jabatan', 'tgl_lahir', 'email', 'pendidikan_terakhir', 'tgl_masuk', 'alamat')->get();
     }
 
     public function headings(): array
@@ -29,6 +29,7 @@ class PegawaiExport implements FromCollection, WithHeadings, WithEvents, ShouldA
             'Email',
             'Pendidikan',
             'Tanggal Masuk',
+            'Alamat'
         ];
     }
 
@@ -36,7 +37,7 @@ class PegawaiExport implements FromCollection, WithHeadings, WithEvents, ShouldA
     {
         return [
             AfterSheet::class => function(AfterSheet $event) {
-                $event->sheet->getStyle('A1:H1')->applyFromArray([
+                $event->sheet->getStyle('A1:I1')->applyFromArray([
                     'font' => [
                         'bold' => true,
                         'color' => ['rgb' => '000000'],
@@ -54,7 +55,7 @@ class PegawaiExport implements FromCollection, WithHeadings, WithEvents, ShouldA
                 ]);
 
                 // Menetapkan border untuk semua cell dalam rentang data
-                $event->sheet->getStyle('A2:H' . $event->sheet->getHighestRow())->applyFromArray([
+                $event->sheet->getStyle('A2:I' . $event->sheet->getHighestRow())->applyFromArray([
                     'borders' => [
                         'allBorders' => [
                             'borderStyle' => Border::BORDER_THIN,

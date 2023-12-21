@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', [App\Http\Controllers\Hrd\HomeController::class, 'index'])->name('hrd.dashboard');
         Route::get('/dashboard/data', [App\Http\Controllers\Hrd\HomeController::class, 'chartData'])->name('hrd.dashboard.data');
         Route::get('/dashboard/top_scores', [App\Http\Controllers\Hrd\HomeController::class, 'topScores'])->name('hrd.dashboard.top_scores');
+        Route::get('/get-deskripsi', [App\Http\Controllers\Hrd\PegawaiController::class, 'getDeskripsiByJabatan'])->name('get-deskripsi');
     
         Route::prefix('hrd/jabatan')
         ->as('hrd.jabatans.')

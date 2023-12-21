@@ -18,6 +18,7 @@ class Jabatan extends Model
     public static $rules = [
         'nama_jabatan'  => 'required',
         'divisi'        => 'required',
+        'deskripsi'     => 'required',
     ];
 
     public static $ruleMessages = [

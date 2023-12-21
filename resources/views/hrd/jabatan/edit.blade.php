@@ -59,6 +59,20 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Jobdesk</label>
+                                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" class="form-control @error('deskripsi') is-invalid @enderror" value="{{ $jabatans->deskripsi }}">{{ $jabatans->deskripsi }}</textarea>
+                                        @error('deskripsi')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>  
+
                             <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Update Data</button>
                                 <button type="reset" class="btn btn-info">Reset Form</button>

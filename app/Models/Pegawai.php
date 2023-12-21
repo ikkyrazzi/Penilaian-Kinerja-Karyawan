@@ -23,6 +23,7 @@ class Pegawai extends Model
         'pendidikan_terakhir'   => 'nullable',
         'tgl_masuk'             => 'nullable',
         'nip'                   => 'required',
+        'alamat'                => 'nullable',
     ];
 
     public static $ruleMessages = [

@@ -17,6 +17,7 @@ class CreateJabatansTable extends Migration
             $table->uuid('id')->primary();
             $table->string('nama_jabatan');
             $table->string('divisi');
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }

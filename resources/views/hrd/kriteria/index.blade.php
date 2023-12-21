@@ -119,7 +119,6 @@
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 {{-- <a href="{{ route('hrd.kriterias.show', $kriteria->id) }}" class="btn btn-xs btn-info btn-flat"><i class="fa fa-eye" aria-hidden="true"></i></a> --}}
-                                                <a href="{{ route('hrd.kriterias.edit', $kriteria->id) }}" class="btn btn-xs btn-primary btn-flat"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                                 <form action="{{ route('hrd.kriterias.destroy', $kriteria->id) }}" method="POST" style="display: inline;">
                                                     @csrf @method('DELETE')
                                                     <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></button>

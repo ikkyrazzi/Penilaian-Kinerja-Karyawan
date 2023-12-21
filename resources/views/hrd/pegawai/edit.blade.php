@@ -38,7 +38,7 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label>Nomor Induk Pegawai</label>
-                                        <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" id="nip" value="{{ $pegawais->nip }}" required autofocus />
+                                        <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" id="nip" value="{{ $pegawais->nip }}" required autofocus readonly/>
                                         @error('nip')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -77,18 +77,19 @@
                                             <option value="">Pilih</option>
                                 
                                             @foreach ($jabatans as $jabatan)
-                                                <option value="{{ $jabatan->nama_jabatan }}" {{ old('nama_jabatan', $pegawais->jabatan->nama_jabatan) == $jabatan->nama_jabatan ? 'selected' : '' }}>
+                                                <option value="{{ $jabatan->nama_jabatan }}" {{ old('nama_jabatan') == $jabatan->nama_jabatan ? 'selected' : '' }}>
                                                     {{ $jabatan->nama_jabatan }}
                                                 </option>
                                             @endforeach
                                         </select>
                                         @error('nama_jabatan')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
                                         @enderror
                                     </div>
-                                </div>                                
+                                </div>
+                                                               
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>Pendidikan</label>
@@ -123,6 +124,20 @@
                                         <label>Tanggal Masuk</label>
                                         <input type="date" class="form-control @error('tgl_masuk') is-invalid @enderror" name="tgl_masuk" id="tgl_masuk" value="{{ $pegawais->tgl_masuk }}" required />
                                         @error('tgl_masuk')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Alamat</label>
+                                        <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control @error('alamat') is-invalid @enderror" placeholder="alamat">{{ $pegawais->alamat }}</textarea>
+                                        @error('alamat')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>

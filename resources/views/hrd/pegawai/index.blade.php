@@ -130,6 +130,20 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Alamat</label>
+                                        <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control @error('alamat') is-invalid @enderror" placeholder="alamat">{{ old('alamat') }}</textarea>
+                                        @error('alamat')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Tambah Pegawai</button>
                                 <a href="{{ route('hrd.pegawais.export') }}" class="btn btn-success">Export Data</a>
@@ -155,9 +169,7 @@
                                         <th class="text-center">Nomor Induk Pegawai</th>
                                         <th class="text-center">Nama Pegawai</th>
                                         <th class="text-center">Jabatan</th>
-                                        <th class="text-center">Tanggal Lahir</th>
                                         <th class="text-center">Email</th>
-                                        <th class="text-center">Pendidikan</th>
                                         <th class="text-center">Tanggal Masuk</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
@@ -167,10 +179,8 @@
                                     <tr>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->nip }}</td>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->nama_pegawai }}</td>
-                                        <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->nama_jabatan }}</td>
-                                        <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->tgl_lahir }}</td>
+                                        <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->nama_jabatan}}</td>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->email }}</td>
-                                        <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->pendidikan_terakhir }}</td>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $pegawai->tgl_masuk }}</td>
                                         <td class="text-center">
                                             <div class="btn-group">

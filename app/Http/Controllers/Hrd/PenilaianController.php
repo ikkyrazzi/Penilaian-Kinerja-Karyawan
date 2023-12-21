@@ -25,22 +25,32 @@ class PenilaianController extends Controller
         $subtitle = 'Daftar Data';
         $url = self::URL;
         $folder = 'app';
-    
+
         $penilaians = Penilaian::latest()->get();
-    
+
         // Get unique nama_pegawai values
         $uniquePegawaiNames = $penilaians->unique('nama_pegawai')->pluck('nama_pegawai');
-    
+
         // Calculate total skor_nilai for each unique nama_pegawai
-        $totalSkorNilai = [];
+        $hasilKinerja = [];
+        $totalSkorNilai = []; // Initialize the array here
         foreach ($uniquePegawaiNames as $namaPegawai) {
             $totalSkorNilai[$namaPegawai] = Penilaian::where('nama_pegawai', $namaPegawai)->sum('skor_nilai');
+
+            // Determine the performance category based on the total score
+            if ($totalSkorNilai[$namaPegawai] >= 3.5 && $totalSkorNilai[$namaPegawai] <= 5) {
+                $hasilKinerja[$namaPegawai] = 'Kinerja Bagus';
+            } elseif ($totalSkorNilai[$namaPegawai] >= 2 && $totalSkorNilai[$namaPegawai] < 3.5) {
+                $hasilKinerja[$namaPegawai] = 'Kinerja Cukup';
+            } elseif ($totalSkorNilai[$namaPegawai] >= 1 && $totalSkorNilai[$namaPegawai] < 2) {
+                $hasilKinerja[$namaPegawai] = 'Kinerja Tidak Bagus';
+            } 
         }
-    
+
         $pegawais = Pegawai::latest()->get();
         $kriterias = Kriteria::latest()->get();
-    
-        return view(self::FOLDER . 'index', compact('title', 'subtitle', 'url', 'penilaians', 'folder', 'pegawais', 'kriterias', 'uniquePegawaiNames', 'totalSkorNilai'));
+
+        return view(self::FOLDER . 'index', compact('title', 'subtitle', 'url', 'penilaians', 'folder', 'pegawais', 'kriterias', 'uniquePegawaiNames', 'hasilKinerja', 'totalSkorNilai'));
     }
 
     public function create()
@@ -76,6 +86,7 @@ class PenilaianController extends Controller
             'skor' => 'required',
             'bobot' => 'required',
             'skor_nilai' => 'required',
+            'hasil' => 'required',
         ]);
 
         $penilaiansData = [];

@@ -32,6 +32,7 @@ class JabatanImport implements ToModel, WithHeadingRow
             'id' => Uuid::uuid4()->toString(),
             'nama_jabatan' => $row['nama_jabatan'],
             'divisi' => $row['divisi'],
+            'deskripsi' => $row['jobdesk'],
         ]);
     }
 }

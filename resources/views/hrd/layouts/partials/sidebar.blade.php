@@ -14,15 +14,15 @@
         <li class="menu-header">Kelola Data</li>
         <li class="">
             {{-- <a class="nav-link" href="{{ route('tampilan.books.index') }}"><i class="fa fa-book" aria-hidden="true"></i> <span>Data Buku</span></a> --}}
-            <a class="nav-link" href="{{ route('hrd.jabatans.index') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> <span>Data Jabatan</span></a>
+            <a class="nav-link" href="{{ route('hrd.jabatans.index') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> <span>Jabatan</span></a>
         </li>
         <li class="">
             {{-- <a class="nav-link" href="{{ route('tampilan.apps.index') }}"><i class="fa fa-mobile" aria-hidden="true"></i> <span>Data Aplikasi</span></a> --}}
-            <a class="nav-link" href="{{ route('hrd.pegawais.index') }}"><i class="fa fa-users" aria-hidden="true"></i> <span>Data Pegawai</span></a>
+            <a class="nav-link" href="{{ route('hrd.pegawais.index') }}"><i class="fa fa-users" aria-hidden="true"></i> <span>Pegawai</span></a>
         </li>
         <li class="">
             {{-- <a class="nav-link" href="{{ route('tampilan.book_apps.index') }}"><i class="fa fa-refresh" aria-hidden="true"></i> <span>Sinkronisasi Data</span></a> --}}
-            <a class="nav-link" href="{{ route('hrd.kriterias.index') }}"><i class="fa fa-check-circle" aria-hidden="true"></i> <span>Kriteria Penilaian</span></a>
+            <a class="nav-link" href="{{ route('hrd.kriterias.index') }}"><i class="fa fa-check-circle" aria-hidden="true"></i> <span>Kriteria</span></a>
         </li>
         <li class="">
             {{-- <a class="nav-link" href="{{ route('tampilan.book_apps.index') }}"><i class="fa fa-refresh" aria-hidden="true"></i> <span>Sinkronisasi Data</span></a> --}}

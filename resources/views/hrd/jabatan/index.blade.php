@@ -59,6 +59,20 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Jobdesk</label>
+                                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" class="form-control @error('deskripsi') is-invalid @enderror" placeholder="Deskripsi">{{ old('deskripsi') }}</textarea>
+                                        @error('deskripsi')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>                                                                                  
+
                             <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Tambah Jabatan</button>
                                 <a href="{{ route('hrd.jabatans.export') }}" class="btn btn-success">Export Data</a>
@@ -84,6 +98,7 @@
                                         <th class="text-center">No</th>
                                         <th class="text-center">Nama Jabatan</th>
                                         <th class="text-center">Divisi</th>
+                                        <th class="text-center">Jobdesk</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -96,6 +111,7 @@
                                         <td class="text-center font-weight-bold text-uppercase">{{ $no++ }}</td>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $jabatan->nama_jabatan }}</td>
                                         <td class="text-center font-weight-bold text-uppercase">{{ $jabatan->divisi }}</td>
+                                        <td class="text-center font-weight-bold text-uppercase">{{ $jabatan->deskripsi }}</td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 {{-- <a href="{{ route('hrd.jabatans.show', $jabatan->id) }}" class="btn btn-xs btn-info btn-flat"><i class="fa fa-eye" aria-hidden="true"></i></a> --}}

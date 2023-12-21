@@ -22,6 +22,7 @@ class CreatePegawaisTable extends Migration
             $table->string('email')->unique();
             $table->string('pendidikan_terakhir');
             $table->date('tgl_masuk');
+            $table->text('alamat');
             $table->timestamps();
         });
     }
